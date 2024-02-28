@@ -15,7 +15,7 @@ const mapForCards =  ()=>{
 
 
 const mapForCountries = (countryName) => {
-    let myCountries = mapForCards().filter(country => country["nameOfficial"].toLowerCase().startsWith(countryName));
+    let myCountries = mapForCards().filter(country => country["nameOfficial"].toLowerCase().includes(countryName));
     return  countryName.length ==0 ? mapForCards() :  myCountries;
 }
 

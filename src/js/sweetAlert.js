@@ -29,28 +29,31 @@ const loadModal =(nameCountry)=>{
 
 
 // event when click in the target
-document.addEventListener("DOMContentLoaded", () => {
-    const getInformationTargetEvent = () => {
+
+
+const getInformationTargetEvent = () => {
+    
+    const elementsTarget = document.querySelectorAll(".target");
+
+    elementsTarget.forEach(element => {
         
-        const elementsTarget = document.querySelectorAll(".target");
-    
-        console.log(elementsTarget);
-    
-        elementsTarget.forEach(element => {
-            console.log("hola");
-            element.addEventListener("click", (e) => {
-    
-                const cardMain = e.target.closest(".target");
-                const endChild = cardMain.lastElementChild.textContent;
-                console.log(endChild);
-                loadModal(endChild);
-    
-    
-            });
+        element.addEventListener("click", (e) => {
+
+            const cardMain = e.target.closest(".target");
+            const endChild = cardMain.lastElementChild.textContent;
+            console.log(endChild);
+            loadModal(endChild);
+
+
         });
-    }
-    getInformationTargetEvent();
-})
+    });
+}
+
+
+export {
+    getInformationTargetEvent
+}
+
 
 
 
