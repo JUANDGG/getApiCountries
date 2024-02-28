@@ -14,6 +14,14 @@ const mapForCards =  ()=>{
 }
 
 
+const mapForCountries = (countryName) => {
+    let myCountries = mapForCards().filter(country => country["nameOfficial"].toLowerCase().startsWith(countryName));
+    return  countryName.length ==0 ? mapForCards() :  myCountries;
+}
+
+
+
+
 
 const mapForOneCard =(nameCountry)=>{
     let coutrieCard =getDatalocalStorage()
@@ -37,37 +45,25 @@ const mapForOneCard =(nameCountry)=>{
 const load = (data) =>{
     const containerCards = document.querySelector(".containerCards");
 
+    containerCards.innerHTML ="";
     data.forEach(element => {
         let renderedTemplate= templateCard(element.urlImage,element.nameOfficial)
         containerCards.innerHTML += renderedTemplate
         
     });
 
-
-
-    // si hay un evento de targeta alguien le da click
-    document.querySelectorAll(".targeta").forEach(tarjeta => {
-        tarjeta.addEventListener("click", (e) => {
-            const tarjetaPadre = e.target.closest(".targeta");
-            console.log(tarjetaPadre);
-            window.location.href = "info.html";
-
-        });
-    });
-
-
-
-    
-
 }
 
 
 
 
-load(mapForCards())
+
 
 export {
-    mapForOneCard
+    mapForCards,
+    mapForOneCard,
+    load ,
+    mapForCountries
 }
 
 

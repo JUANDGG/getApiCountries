@@ -1,16 +1,14 @@
 import {mapForOneCard} from "./loadCard.js";
 
 
-const buildSweetAlert =(UrlImage,title,capital,region)=>{
+const buildSweetAlert = (UrlImage, title, capital, region) => {
     return Swal.fire({
         imageUrl: UrlImage,
         imageWidth: 400,
         imageHeight: 200,
         imageAlt: "image country",
-        title ,
-        text: capital,
-        text: region
-    
+        title,
+        text: `Capital: ${capital}\nRegion: ${region}`
     });
 }
 
@@ -18,7 +16,7 @@ const buildSweetAlert =(UrlImage,title,capital,region)=>{
 const loadModal =(nameCountry)=>{
 
     const countryInformation =mapForOneCard(nameCountry)
-
+   
     buildSweetAlert(
         countryInformation[0]["urlImage"],
         countryInformation[0]["nameOfficial"],
@@ -31,22 +29,29 @@ const loadModal =(nameCountry)=>{
 
 
 // event when click in the target
-document.addEventListener("DOMContentLoaded", ()=> {
+document.addEventListener("DOMContentLoaded", () => {
     const getInformationTargetEvent = () => {
+        
         const elementsTarget = document.querySelectorAll(".target");
-
+    
+        console.log(elementsTarget);
+    
         elementsTarget.forEach(element => {
+            console.log("hola");
             element.addEventListener("click", (e) => {
+    
                 const cardMain = e.target.closest(".target");
                 const endChild = cardMain.lastElementChild.textContent;
+                console.log(endChild);
                 loadModal(endChild);
-
-
+    
+    
             });
         });
     }
     getInformationTargetEvent();
-});
+})
+
 
 
 
