@@ -15,26 +15,42 @@ const buildSweetAlert =(UrlImage,title,capital,region)=>{
 }
 
 
-const loadModal =(sweetAlertFunction)=>{
+const loadModal =(nameCountry)=>{
+
+    const countryInformation =mapForOneCard(nameCountry)
+
+    buildSweetAlert(
+        countryInformation[0]["urlImage"],
+        countryInformation[0]["nameOfficial"],
+        countryInformation[0]["capitalCountry"],
+        countryInformation[0]["region"]
+    )
     
 }
 
 
 
 // event when click in the target
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", ()=> {
     const getInformationTargetEvent = () => {
         const elementsTarget = document.querySelectorAll(".target");
 
         elementsTarget.forEach(element => {
             element.addEventListener("click", (e) => {
-                const targetaPadre = e.target.closest(".target");
-                console.log(targetaPadre);
+                const cardMain = e.target.closest(".target");
+                const endChild = cardMain.lastElementChild.textContent;
+                loadModal(endChild);
+
+
             });
         });
     }
     getInformationTargetEvent();
 });
+
+
+
+
 
 
 

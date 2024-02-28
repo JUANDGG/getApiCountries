@@ -15,8 +15,10 @@ const mapForCards =  ()=>{
 
 
 
-const mapForOneCard =()=>{
-    let coutriesCard =getDatalocalStorage().map(element => {
+const mapForOneCard =(nameCountry)=>{
+    let coutrieCard =getDatalocalStorage()
+    .filter(element => element["name"]["official"].toLowerCase() ==nameCountry.toLowerCase())
+    .map(element => {
         return {
             "urlImage" :element["flags"]["png"],
             "nameOfficial": element["name"]["official"] ,
@@ -26,7 +28,9 @@ const mapForOneCard =()=>{
         
     }  )
 
-    return coutriesCard  ;
+    console.log(coutrieCard) ;
+
+    return coutrieCard  ;
 }
 
 
